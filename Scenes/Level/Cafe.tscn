@@ -1,16 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Chaos.png" type="Texture" id=1]
-[ext_resource path="res://Assets/cadeiras-mesas.png" type="Texture" id=2]
-[ext_resource path="res://Assets/molduras.png" type="Texture" id=3]
-[ext_resource path="res://Assets/paredes.png" type="Texture" id=4]
-[ext_resource path="res://Assets/bancadas.png" type="Texture" id=5]
-[ext_resource path="res://Assets/fogao-geladeira.png" type="Texture" id=6]
-[ext_resource path="res://Assets/kitchen-table(1).png" type="Texture" id=7]
+[ext_resource path="res://Assets/bancadas.png" type="Texture" id=1]
+[ext_resource path="res://Assets/molduras.png" type="Texture" id=2]
+[ext_resource path="res://Assets/kitchen-table(1).png" type="Texture" id=3]
+[ext_resource path="res://Assets/cadeiras-mesas.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Chaos.png" type="Texture" id=5]
+[ext_resource path="res://Assets/paredes.png" type="Texture" id=6]
+[ext_resource path="res://Assets/fogao-geladeira.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Cafe/cafe_manager.gd" type="Script" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Chaos.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 128, 192 )
@@ -31,7 +32,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "molduras.png 1"
-1/texture = ExtResource( 3 )
+1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 256, 256 )
@@ -52,7 +53,7 @@
 1/shapes = [  ]
 1/z_index = 0
 2/name = "paredes.png 2"
-2/texture = ExtResource( 4 )
+2/texture = ExtResource( 6 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 192, 256 )
@@ -75,7 +76,7 @@
 
 [sub_resource type="TileSet" id=2]
 0/name = "cadeiras-mesas.png 0"
-0/texture = ExtResource( 2 )
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 128, 128 )
@@ -96,7 +97,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "fogao-geladeira.png 1"
-1/texture = ExtResource( 6 )
+1/texture = ExtResource( 7 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 128, 128 )
@@ -117,7 +118,7 @@
 1/shapes = [  ]
 1/z_index = 0
 2/name = "bancadas.png 2"
-2/texture = ExtResource( 5 )
+2/texture = ExtResource( 1 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 192, 192 )
@@ -138,7 +139,7 @@
 2/shapes = [  ]
 2/z_index = 0
 3/name = "kitchen-table(1).png 3"
-3/texture = ExtResource( 7 )
+3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 64, 128 )
@@ -153,6 +154,7 @@
 3/z_index = 0
 
 [node name="Cafe" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Background" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
