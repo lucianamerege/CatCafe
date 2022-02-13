@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/new-menu-bg.png-23957a36dd1bb94fb0ab42247cb3b5fa.stex"
+path="res://.import/botoes-3hover.png-41cd18dd8287fa199136a649c31ea01c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ImageArts/new-menu-bg.png"
-dest_files=[ "res://.import/new-menu-bg.png-23957a36dd1bb94fb0ab42247cb3b5fa.stex" ]
+source_file="res://Assets/ImageArts/botoes-3hover.png"
+dest_files=[ "res://.import/botoes-3hover.png-41cd18dd8287fa199136a649c31ea01c.stex" ]
 
 [params]
 
