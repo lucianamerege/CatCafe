@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Table",
+"language": "GDScript",
+"path": "res://Scripts/Cafe/table.gd"
+} ]
+_global_script_class_icons={
+"Table": ""
+}
+
 [application]
 
 config/name="TesteGameDev"
