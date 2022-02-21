@@ -10,14 +10,18 @@ var rng = RandomNumberGenerator.new()
 var client_counter = 0
 var client_limit = 3
 var table_list = []
+var card_list = []
 
 const CLIENT_MIN_INTERVAL = 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	create_tables()
+	create_cards()
 	print(table_list[2].position)
 	print(table_list[2].occupied)
+	print(card_list[2].nome)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,6 +37,11 @@ func create_tables():
 	table_list.append(Table.new(Vector2(500,285)))
 	table_list.append(Table.new(Vector2(335,285)))
 	table_list.append(Table.new(Vector2(145,285)))
+
+func create_cards():
+	card_list.append(Card.new(1, 1, 1, "Count Fang"))
+	card_list.append(Card.new(2, 0, 1, "Jujuba"))
+	card_list.append(Card.new(0, 0, 3, "Jiló"))
 
 func try_spawn():
 	var chance = time/2 * (client_limit - client_counter) * 1.5/client_limit
