@@ -8,6 +8,7 @@ onready var fundo = $FiltroFundoTextBox
 onready var texto = $TextBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Texto
 onready var proximo = $TextBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Proximo
 onready var nome_personagem = $TextBoxContainer/MarginContainer/VBoxContainer/Personagem
+onready var cafe = get_parent()
 
 enum State {
 	READY,
@@ -35,10 +36,6 @@ func _process(delta):
 				change_state(State.READY)
 				load_dialogue()
 
-func _ready():
-	hide_textbox()
-	load_dialogue()
-
 func hide_textbox():
 	textbox_container.hide()
 	fundo.hide()
@@ -56,13 +53,10 @@ func _on_Tween_tween_all_completed():
 
 func change_state(prox_estado):
 	estado_atual = prox_estado
-	print ("Novo estado: " + str(prox_estado))
-
 
 #funcao de troca de dialogo
 func load_dialogue():
 
-	print(index_dialogo)
 	if index_dialogo < dialogo.size():
 		show_textbox()
 		change_state(State.READING)
@@ -75,3 +69,4 @@ func load_dialogue():
 		index_dialogo += 1
 	else:
 		hide_textbox()
+		cafe.estado_atual = cafe.TimeState.RUNNING

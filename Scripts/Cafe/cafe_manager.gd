@@ -4,6 +4,8 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+const day_lenght = 10.0
+
 var time = 0.0
 var aux_time = 0.0
 var rng = RandomNumberGenerator.new()
@@ -11,12 +13,23 @@ var client_counter = 0
 var client_limit = 3
 var table_list = []
 var card_list = []
+var money = 1000
+var day_counter = 1
 
 const CLIENT_MIN_INTERVAL = 3.0
 
+onready var dialogues = $TextBox
+
+enum TimeState {
+	RUNNING,
+	PAUSED
+}
+
+var estado_atual = TimeState.RUNNING
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	dialogues.hide_textbox()
 	create_tables()
 	create_cards()
 	print(table_list[2].position)
@@ -26,12 +39,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	time += delta
-	if time > CLIENT_MIN_INTERVAL:
-		aux_time += delta
-		if aux_time > 1 and client_counter < client_limit:
-			try_spawn()
-			aux_time -= 1.0
+	if estado_atual == TimeState.RUNNING:
+		time += delta
+		if time > CLIENT_MIN_INTERVAL:
+			aux_time += delta
+			if aux_time > 1 and client_counter < client_limit:
+				try_spawn()
+				aux_time -= 1.0
+			
+		if time >= day_lenght:
+			print("Fim do dia "+str(day_counter))
+			time = 0.0
+			day_counter += 1
+			estado_atual = TimeState.PAUSED
+			call_textbox()
 
 func create_tables():
 	table_list.append(Table.new(Vector2(500,285)))
@@ -61,3 +82,5 @@ func spawn_client():
 	print("cliente " + str(client_counter) + " spawnou em" + str(client.global_position))
 	add_child(client)
 	
+func call_textbox():
+	dialogues.load_dialogue()
