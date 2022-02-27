@@ -13,6 +13,7 @@ var client_counter = 0
 var client_limit = 3
 var table_list = []
 var card_list = []
+var order_queue = []
 var money = 1000
 var day_counter = 1
 
