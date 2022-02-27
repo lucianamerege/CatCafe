@@ -1,6 +1,6 @@
 extends Node
 
-const day_lenght = 10.0
+const day_lenght = 60.0
 
 var transition
 
@@ -11,6 +11,7 @@ var client_counter = 0
 var client_limit = 3
 var table_list = []
 var card_list = []
+var order_queue = []
 var money = 1000
 onready var day_counter = 1
 
