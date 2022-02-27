@@ -19,10 +19,10 @@ __meta__ = {
 }
 
 [node name="IniciarDia" type="TextureButton" parent="."]
-margin_left = 463.0
-margin_top = 372.0
-margin_right = 559.0
-margin_bottom = 468.0
+margin_left = 629.0
+margin_top = 264.0
+margin_right = 725.0
+margin_bottom = 360.0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 __meta__ = {

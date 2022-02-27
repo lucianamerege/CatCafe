@@ -1,10 +1,8 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 const day_lenght = 10.0
+
+var transition
 
 var time = 0.0
 var aux_time = 0.0
@@ -14,28 +12,33 @@ var client_limit = 3
 var table_list = []
 var card_list = []
 var money = 1000
-var day_counter = 1
+onready var day_counter = 1
 
 const CLIENT_MIN_INTERVAL = 3.0
 
-onready var dialogues = $TextBox
+onready var dialogues = $Textboxes
+onready var dialogue_list = $Dialogo
+onready var systemDia_list = $Sistema
 
 enum TimeState {
 	RUNNING,
 	PAUSED
 }
+onready var estado_atual = TimeState.PAUSED
+var dialogo_atual
+onready var dialogo_ou_sistema = 1 #1 vai ser dialogo, 2 vai ser sistema
 
-var estado_atual = TimeState.RUNNING
+var transition_scene
+var posso_prosseguir = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	transition_scene = load("res://Scenes/Entity/TransitionDay.tscn")
 	dialogues.hide_textbox()
+	dialogues.hide_textbox_system()
 	create_tables()
 	create_cards()
-	print(table_list[2].position)
-	print(table_list[2].occupied)
-	print(card_list[2].nome)
-
+	transition_screen_load()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -48,11 +51,10 @@ func _process(delta):
 				aux_time -= 1.0
 			
 		if time >= day_lenght:
-			print("Fim do dia "+str(day_counter))
 			time = 0.0
 			day_counter += 1
+			transition_screen_load()
 			estado_atual = TimeState.PAUSED
-			call_textbox()
 
 func create_tables():
 	table_list.append(Table.new(Vector2(500,285)))
@@ -81,6 +83,22 @@ func spawn_client():
 	client.global_position = self.position + Vector2(415,180)
 	print("cliente " + str(client_counter) + " spawnou em" + str(client.global_position))
 	add_child(client)
-	
-func call_textbox():
-	dialogues.load_dialogue()
+
+func transition_screen_load():
+	transition = transition_scene.instance()
+	add_child(transition)
+
+func day_manager():
+	if day_counter == 1:
+		if posso_prosseguir == 0:
+			dialogo_atual = dialogue_list.dialogo_dia_1
+			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+			posso_prosseguir += 1
+		else:
+			if posso_prosseguir == 1:
+				print("AAAAAAAAAAAAAAAA")
+				dialogo_atual = systemDia_list.sistema_dia_1
+				dialogo_ou_sistema = 2
+				dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+				estado_atual = TimeState.RUNNING
+				posso_prosseguir += 1
