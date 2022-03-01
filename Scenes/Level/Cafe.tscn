@@ -1,0 +1,453 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Assets/Chaos.png" type="Texture" id=1]
+[ext_resource path="res://Assets/cadeiras-mesas.png" type="Texture" id=2]
+[ext_resource path="res://Assets/molduras.png" type="Texture" id=3]
+[ext_resource path="res://Assets/paredes.png" type="Texture" id=4]
+[ext_resource path="res://Assets/bancadas.png" type="Texture" id=5]
+[ext_resource path="res://Assets/fogao-geladeira.png" type="Texture" id=6]
+[ext_resource path="res://Assets/kitchen-table(1).png" type="Texture" id=7]
+[ext_resource path="res://Assets/suco-tabua.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Cafe/cafe_manager.gd" type="Script" id=9]
+[ext_resource path="res://Resources/Fonts/pix-pixelfjverdana12pt.regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Scripts/Cafe/TextBox.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Roteiro/Dialogo.gd" type="Script" id=12]
+[ext_resource path="res://Assets/ImageArts/menu-fundo-2.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/Roteiro/Sistema.gd" type="Script" id=14]
+
+[sub_resource type="TileSet" id=1]
+0/name = "Chaos.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 128, 192 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 64, 64 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "molduras.png 1"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 256, 256 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 64, 64 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "paredes.png 2"
+2/texture = ExtResource( 4 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 192, 256 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 64, 128 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[sub_resource type="TileSet" id=2]
+0/name = "cadeiras-mesas.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 128, 128 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 64, 64 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "fogao-geladeira.png 1"
+1/texture = ExtResource( 6 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 128, 128 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 64, 128 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "bancadas.png 2"
+2/texture = ExtResource( 5 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 192, 192 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 64, 64 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "kitchen-table(1).png 3"
+3/texture = ExtResource( 7 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 64, 128 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+
+[sub_resource type="TileSet" id=3]
+0/name = "suco-tabua.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 128 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 64, 64 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 14
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.556863, 0.556863, 0.556863, 1 )
+border_width_top = 24
+border_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 103, 69.5 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 0, 1 )
+
+[node name="Cafe" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1026.0
+margin_bottom = 600.0
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 0, 1, 196609, 1, 1, 2, 2, 1, 2, 3, 1, 2, 4, 1, 2, 5, 1, 2, 6, 1, 2, 7, 1, 2, 8, 1, 2, 9, 1, 2, 10, 1, 65536, 11, 1, 2, 12, 1, 2, 13, 1, 2, 14, 1, 2, 15, 1, 196608, 65536, 1, 1, 65537, 2, 0, 65538, 2, 65537, 65539, 2, 0, 65540, 2, 65536, 65541, 2, 0, 65542, 2, 65538, 65543, 2, 0, 65544, 2, 2, 65545, 2, 0, 65546, 1, 65537, 65547, 2, 1, 65548, 2, 1, 65549, 2, 1, 65550, 2, 1, 65551, 1, 0, 131072, 1, 1, 131082, 1, 65537, 131087, 1, 0, 196608, 1, 1, 196609, 0, 65537, 196610, 0, 1, 196611, 0, 65536, 196612, 0, 65537, 196613, 0, 1, 196614, 0, 0, 196615, 0, 65536, 196616, 0, 65537, 196617, 0, 1, 196618, 1, 65537, 196619, 0, 131073, 196620, 0, 131073, 196621, 0, 131073, 196622, 0, 131073, 196623, 1, 0, 262144, 1, 1, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 1, 65537, 262155, 0, 131072, 262156, 0, 131072, 262157, 0, 131072, 262158, 0, 131072, 262159, 1, 0, 327680, 1, 1, 327681, 0, 65537, 327682, 0, 1, 327683, 0, 65536, 327684, 0, 65537, 327685, 0, 1, 327686, 0, 0, 327687, 0, 65536, 327688, 0, 65537, 327689, 0, 1, 327690, 1, 131072, 327691, 0, 131072, 327692, 0, 131072, 327693, 0, 131072, 327694, 0, 131072, 327695, 1, 0, 393216, 1, 1, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 1, 131073, 393227, 0, 131072, 393228, 0, 131073, 393229, 0, 131072, 393230, 0, 131072, 393231, 1, 0, 458752, 1, 1, 458753, 0, 65537, 458754, 0, 1, 458755, 0, 65536, 458756, 0, 65537, 458757, 0, 1, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 1, 65538, 458763, 1, 3, 458764, 1, 3, 458765, 1, 3, 458766, 1, 3, 458767, 1, 131074, 524288, 1, 131075, 524289, 1, 3, 524290, 1, 3, 524291, 1, 3, 524292, 1, 3, 524293, 1, 3, 524294, 1, 3, 524295, 1, 3, 524296, 1, 3, 524297, 1, 3, 524298, 1, 65539 )
+
+[node name="Moveis" type="TileMap" parent="."]
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( 65547, 1, 0, 65548, 1, 1, 131073, 0, 65536, 131074, 0, 1, 131075, 0, 0, 131076, 0, 65536, 131077, 0, 1, 131079, 0, 0, 131080, 0, 65536, 131081, 0, 1, 131085, 2, 1, 131086, 2, 131072, 196622, 2, 131073, 262145, 0, 65536, 262146, 0, 1, 262147, 0, 0, 262148, 0, 65536, 262149, 0, 1, 262151, 0, 0, 262152, 0, 65536, 262153, 0, 1, 262156, 3, 0, 262158, 2, 131073, 327694, 2, 131074, 393217, 0, 65536, 393218, 0, 1, 393219, 0, 0, 393220, 0, 65536, 393221, 0, 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 513, 299 )
+current = true
+
+[node name="Decoracao" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 196622, 0, 65536, 262158, 0, 0 )
+
+[node name="Dialogo" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="Sistema" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="Textboxes" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="TextBox" type="CanvasLayer" parent="Textboxes"]
+
+[node name="TextBoxContainer" type="MarginContainer" parent="Textboxes/TextBox"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -206.0
+margin_right = -32.0
+margin_bottom = -32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Textboxes/TextBox/TextBoxContainer"]
+margin_right = 960.0
+margin_bottom = 174.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Textboxes/TextBox/TextBoxContainer"]
+margin_right = 960.0
+margin_bottom = 174.0
+custom_constants/margin_right = 24
+custom_constants/margin_top = 28
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Textboxes/TextBox/TextBoxContainer/MarginContainer"]
+margin_left = 24.0
+margin_top = 28.0
+margin_right = 936.0
+margin_bottom = 150.0
+
+[node name="Personagem" type="Label" parent="Textboxes/TextBox/TextBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 912.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 912, 33 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_colors/font_color = Color( 0.984314, 0.278431, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Nome Do Personagem"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Textboxes/TextBox/TextBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 37.0
+margin_right = 912.0
+margin_bottom = 122.0
+size_flags_vertical = 3
+
+[node name="Texto" type="Label" parent="Textboxes/TextBox/TextBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 912.0
+margin_bottom = 85.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Lorem Impsum Lorem Lorem Impsum Lorem Lorem Impsum Lorem Lorem Impsum Lorem Lorem Impsum Lorem"
+autowrap = true
+clip_text = true
+
+[node name="SystemTextBox" type="CanvasLayer" parent="Textboxes"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Textboxes/SystemTextBox"]
+visible = false
+margin_left = 148.0
+margin_top = 119.0
+margin_right = 872.0
+margin_bottom = 481.0
+custom_constants/margin_right = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Textboxes/SystemTextBox/MarginContainer"]
+margin_right = 724.0
+margin_bottom = 362.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Textboxes/SystemTextBox/MarginContainer"]
+margin_right = 724.0
+margin_bottom = 362.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 40
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Textboxes/SystemTextBox/MarginContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 704.0
+margin_bottom = 342.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "AAAAAAAA"
+autowrap = true
+clip_text = true
+
+[node name="FiltroFundoTextBox" type="ColorRect" parent="Textboxes"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 601.0
+color = Color( 0, 0, 0, 0.537255 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Textboxes"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu_Cards" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+margin_left = -1.0
+margin_top = 419.0
+margin_right = 1025.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu_Cards"]
+margin_right = 1026.0
+margin_bottom = 181.0
+custom_styles/panel = SubResource( 10 )
+
+[node name="Area_Cards" type="MarginContainer" parent="CanvasLayer/Menu_Cards"]
+margin_right = 1026.0
+margin_bottom = 181.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu_Cards/Area_Cards"]
+margin_right = 1026.0
+margin_bottom = 181.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu_Cards/Area_Cards"]
+margin_right = 1026.0
+margin_bottom = 181.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Menu_Cards/Area_Cards/HBoxContainer"]
+margin_bottom = 137.0
+
+[node name="Area2D_Kitchen" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D_Kitchen" type="CollisionShape2D" parent="Area2D_Kitchen"]
+position = Vector2( 410, 303.5 )
+shape = SubResource( 11 )
+
+[node name="Panel" type="Panel" parent="Area2D_Kitchen/CollisionShape2D_Kitchen"]
+visible = false
+margin_left = -104.0
+margin_top = -69.5
+margin_right = 103.0
+margin_bottom = 69.5
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D_Cafe" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 816, 303.5 )
+shape = SubResource( 11 )
+
+[node name="Panel" type="Panel" parent="Area2D/CollisionShape2D_Cafe"]
+visible = false
+margin_left = -104.0
+margin_top = -69.5
+margin_right = 103.0
+margin_bottom = 69.5
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="tween_all_completed" from="Textboxes/Tween" to="Textboxes/TextBox" method="_on_Tween_tween_all_completed"]
