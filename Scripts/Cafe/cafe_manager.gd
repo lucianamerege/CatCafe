@@ -37,6 +37,9 @@ func _ready():
 	transition_scene = load("res://Scenes/Entity/TransitionDay.tscn")
 	dialogues.hide_textbox()
 	dialogues.hide_textbox_system()
+	$CanvasLayer/Menu_Cards.hide()
+	$Area2D_Kitchen/CollisionShape2D_Kitchen/Panel.hide()
+	$Area2D/CollisionShape2D_Cafe/Panel.hide()
 	create_tables()
 	create_cards()
 	transition_screen_load()
@@ -97,7 +100,6 @@ func day_manager():
 			posso_prosseguir += 1
 		else:
 			if posso_prosseguir == 1:
-				print("AAAAAAAAAAAAAAAA")
 				dialogo_atual = systemDia_list.sistema_dia_1
 				dialogo_ou_sistema = 2
 				dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)

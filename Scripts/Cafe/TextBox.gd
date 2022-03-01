@@ -92,7 +92,7 @@ func load_dialogue(var nome_dicionario, var dialogo_ou_sistema):
 		else:
 			show_textbox_system()
 			texto_system.text = texto_atual[index_dialogo]["Texto"]
-			$Tween.interpolate_property(texto_system, "percent_visible", 0.0, 1.0, 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			$Tween.interpolate_property(texto_system, "percent_visible", 0.0, 1.0, 6, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		#ele vai fazer uma transição do atributo porcentagem visivel por um periodo de tempo
 		#igual ao tamanho da string de texto * a constante de tempo de leitura
 		$Tween.start()
