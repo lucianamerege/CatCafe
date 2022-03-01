@@ -1,5 +1,4 @@
 extends Node
-
 const day_lenght = 60.0
 
 var transition
@@ -66,16 +65,15 @@ func create_tables():
 	table_list.append(Table.new(Vector2(145,285)))
 
 func create_cards():
-	card_list.append(Card.new(1, 1, 1, "Count Fang"))
-	card_list.append(Card.new(2, 0, 1, "Jujuba"))
-	card_list.append(Card.new(0, 0, 3, "Jiló"))
+	pass
+#	card_list.append(Card.new(1, 1, 1, "Count Fang"))
+#	card_list.append(Card.new(2, 0, 1, "Jujuba"))
+#	card_list.append(Card.new(0, 0, 3, "Jiló"))
 
 func try_spawn():
 	var chance = time/2 * (client_limit - client_counter) * 1.5/client_limit
-	print("tento spawnar")
 	var value = rng.randi_range(1,100)
 	if value < chance:
-		print("consegui com chance" + str(chance) +" e rng"+ str(value))
 		spawn_client()
 		time = 0.0
 		
@@ -85,7 +83,6 @@ func spawn_client():
 	var client_path = "res://Scenes/Entity/Client.tscn"
 	var client = load(client_path).instance()
 	client.global_position = self.position + Vector2(415,180)
-	print("cliente " + str(client_counter) + " spawnou em" + str(client.global_position))
 	add_child(client)
 
 func transition_screen_load():

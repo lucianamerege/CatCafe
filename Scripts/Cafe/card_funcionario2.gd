@@ -7,15 +7,16 @@ var nome
 var dragging = false
 var start_position
 onready var cafe = get_parent()
+var overTable = 0
 
 signal dragsignal;
 
 func _ready():
 	connect("dragsignal",self,"_set_drag_pc")
-	nome = "Count Fang"
-	carisma = 23
-	tecnica = 10
-	stamina = 200
+	nome = "Catarina Preciosa"
+	carisma = 64
+	tecnica = 11
+	stamina = 160
 	start_position = position
 	
 func _process(delta):
@@ -39,16 +40,14 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 			self.position = get_node("/root").event.get_position()
 			
 func executeTask():
+	var tasks = cafe.order_queue
 	if(cafe.order_queue.length > 0 && stamina > 40):
 		print('task executed')
 		cafe.order_queue.remove(0)
-		var task = cafe.order_queue[0]
+		stamina -= 40
 	
 func _on_Table1_body_entered(body):
-	print('body entered', body.get_name())
+	print('body entered')
 
-func cookingTask(index):
-	cafe.order_queue[index].task += 1 #passando a proxima etapa do pedido do cliente
-	
 func _on_Table1_body_exited(body):
 	print('body exited')

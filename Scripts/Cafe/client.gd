@@ -14,7 +14,6 @@ var turn = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("cliente primeiro")
 	table = search_for_table()
 	
 	time = 0
