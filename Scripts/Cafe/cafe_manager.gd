@@ -15,7 +15,7 @@ var order_queue = []
 var money = 1000
 onready var day_counter = 1
 
-const CLIENT_MIN_INTERVAL = 3.0
+const CLIENT_MIN_INTERVAL = 0.5
 
 onready var dialogues = $Textboxes
 onready var dialogue_list = $Dialogo

@@ -1,4 +1,4 @@
-extends Node
+extends AnimatedSprite
 
 
 export var speed = 1  # How fast the player will move (pixels/sec).
@@ -48,6 +48,7 @@ func move():
 func get_direction():
 	to_walk = self.position - (table.position + table_offset)
 	if(to_walk.y != 0):
+		self.set_animation("ClienteDesce")
 		return Vector2(0, to_walk.y/to_walk.y)
 	elif(to_walk.x != 0):
 		if(turn == false):
@@ -56,6 +57,10 @@ func get_direction():
 			can_move = false
 			wait_time = turn_wait_time
 			return Vector2(0,0)
+		if(to_walk.x > 0):
+			self.set_animation("ClienteEsq")
+			return Vector2(-to_walk.x/to_walk.x,0)
+		self.set_animation("ClienteDir")
 		return Vector2(to_walk.x/to_walk.x,0)
 	else:
 		sit()
