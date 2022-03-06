@@ -14,9 +14,14 @@ var card_list = []
 var order_queue = []
 var client_list = []
 var money = 1000
+var gato1
+var gato2
 onready var day_counter = 1
 
 const CLIENT_MIN_INTERVAL = 0.5
+
+signal body_entered
+signal create_cards
 
 onready var dialogues = $Textboxes
 onready var dialogue_list = $Dialogo
@@ -41,6 +46,8 @@ func _ready():
 #	$CanvasLayer/Menu_Cards.hide()
 #	$Area2D_Kitchen/CollisionShape2D_Kitchen/Panel.hide()
 #	$Area2D/CollisionShape2D_Cafe/Panel.hide()
+	gato1 = get_node("Cat1")
+	gato2 = get_node("Cat2")
 	create_tables()
 	create_cards()
 	transition_screen_load()
@@ -77,10 +84,9 @@ func create_tables():
 	table_list[2].dir_esq = 2
 
 func create_cards():
-	pass
-#	card_list.append(Card.new(1, 1, 1, "Count Fang"))
-#	card_list.append(Card.new(2, 0, 1, "Jujuba"))
-#	card_list.append(Card.new(0, 0, 3, "Jiló"))
+	connect("create_cards", gato1, "_on_create_cards")
+	connect("create_cards", gato2, "_on_create_cards")
+	emit_signal("create_cards")
 
 func try_spawn():
 	var chance = time/2 * (client_limit - client_counter) * 1.5/client_limit

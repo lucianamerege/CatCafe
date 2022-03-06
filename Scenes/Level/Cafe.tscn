@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Assets/Chaos.png" type="Texture" id=1]
 [ext_resource path="res://Assets/cadeiras-mesas.png" type="Texture" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Scripts/Roteiro/Sistema.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Cafe/card_funcionario.gd" type="Script" id=15]
 [ext_resource path="res://Assets/SpriteSheets/trabalho-4.png.png" type="Texture" id=16]
-[ext_resource path="res://Scripts/Cafe/table.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Cafe/card_funcionario2.gd" type="Script" id=18]
 
 [sub_resource type="TileSet" id=1]
@@ -231,9 +230,6 @@ border_color = Color( 1, 1, 0, 1 )
 
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 42, 54.5 )
-
-[sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 73, 48 )
 
 [node name="Cafe" type="Node2D"]
 script = ExtResource( 9 )
@@ -464,24 +460,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Table1" type="Area2D" parent="."]
-position = Vector2( 288, 159 )
-input_pickable = false
-script = ExtResource( 17 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table1"]
-position = Vector2( 0, 8 )
-shape = SubResource( 14 )
-
-[node name="Table3" type="Area2D" parent="."]
-position = Vector2( 288, 284 )
-input_pickable = false
-script = ExtResource( 17 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table3"]
-position = Vector2( 0, 8 )
-shape = SubResource( 14 )
-
 [node name="Cat2" type="KinematicBody2D" parent="."]
 position = Vector2( 236, 526 )
 z_index = 1
@@ -511,8 +489,4 @@ __meta__ = {
 [connection signal="body_exited" from="Cozinhar" to="Cat1" method="_on_Cozinhar_body_exited"]
 [connection signal="body_exited" from="Cozinhar" to="Cat2" method="_on_Cozinhar_body_exited"]
 [connection signal="input_event" from="Cat1" to="Cat1" method="_on_KinematicBody2D_input_event"]
-[connection signal="body_entered" from="Table1" to="Cat1" method="_on_Table1_body_entered"]
-[connection signal="body_exited" from="Table1" to="Cat1" method="_on_Table1_body_exited"]
-[connection signal="body_entered" from="Table3" to="Cat1" method="_on_Table1_body_entered"]
-[connection signal="body_exited" from="Table3" to="Cat1" method="_on_Table1_body_exited"]
 [connection signal="input_event" from="Cat2" to="Cat2" method="_on_KinematicBody2D_input_event"]
