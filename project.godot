@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Order",
 "language": "GDScript",
 "path": "res://Scripts/Cafe/order.gd"
-}, {
-"base": "Node",
-"class": "Table",
-"language": "GDScript",
-"path": "res://Scripts/Cafe/table.gd"
 } ]
 _global_script_class_icons={
-"Order": "",
-"Table": ""
+"Order": ""
 }
 
 [application]

@@ -443,6 +443,7 @@ __meta__ = {
 
 [node name="Cat1" type="KinematicBody2D" parent="."]
 position = Vector2( 102, 525 )
+z_index = 1
 input_pickable = true
 script = ExtResource( 15 )
 
@@ -483,6 +484,7 @@ shape = SubResource( 14 )
 
 [node name="Cat2" type="KinematicBody2D" parent="."]
 position = Vector2( 236, 526 )
+z_index = 1
 input_pickable = true
 script = ExtResource( 18 )
 

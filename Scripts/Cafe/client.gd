@@ -1,4 +1,4 @@
-extends Node
+extends AnimatedSprite
 
 
 export var speed = 1  # How fast the player will move (pixels/sec).
@@ -11,11 +11,13 @@ var time
 var to_walk
 var can_move = false
 var turn = false
+var seated = false
 
+signal cliente_senta
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	table = search_for_table()
-	
+	self.connect("cliente_senta",table,"cliente_sentado")
 	time = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,7 +27,7 @@ func _process(delta):
 		can_move = true
 		wait_time = 0
 
-	if(can_move):
+	if(can_move and !seated):
 		move()
 	
 func search_for_table():
@@ -46,7 +48,9 @@ func move():
 	
 func get_direction():
 	to_walk = self.position - (table.position + table_offset)
+
 	if(to_walk.y != 0):
+		self.set_animation("ClienteDesce")
 		return Vector2(0, to_walk.y/to_walk.y)
 	elif(to_walk.x != 0):
 		if(turn == false):
@@ -55,12 +59,19 @@ func get_direction():
 			can_move = false
 			wait_time = turn_wait_time
 			return Vector2(0,0)
+		if(to_walk.x > 0):
+			self.set_animation("ClienteEsq")
+			return Vector2(-to_walk.x/to_walk.x,0)
+		self.set_animation("ClienteDir")
 		return Vector2(to_walk.x/to_walk.x,0)
 	else:
 		sit()
 		return Vector2(0,0)
 
 func sit():
-	can_move = false
+	seated = true
 	cafe.order_queue.append(Order.new())
+	emit_signal("cliente_senta")
+	self.hide()
+	self.set_process(false)
 	pass

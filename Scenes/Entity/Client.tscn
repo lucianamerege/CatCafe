@@ -4,8 +4,9 @@
 [ext_resource path="res://Scripts/Cafe/client.gd" type="Script" id=2]
 
 [node name="AnimatedSprite" type="AnimatedSprite"]
+scale = Vector2( 0.8, 0.8 )
 frames = ExtResource( 1 )
-animation = "ClientIdle"
-frame = 5
+animation = "ClienteDesce"
+frame = 3
 playing = true
 script = ExtResource( 2 )
