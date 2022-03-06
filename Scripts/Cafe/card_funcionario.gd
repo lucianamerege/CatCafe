@@ -52,3 +52,11 @@ func cookingTask(index):
 	
 func _on_Table1_body_exited(body):
 	print('body exited')
+
+
+func _on_Cozinhar_body_entered(body):
+	pass # Replace with function body.
+
+
+func _on_Cozinhar_body_exited(body):
+	pass # Replace with function body.
