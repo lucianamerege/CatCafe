@@ -1,6 +1,6 @@
 extends Node
 
-const day_lenght = 60.0
+const day_lenght = 30.0
 
 var transition
 
@@ -12,6 +12,7 @@ var client_limit = 3
 var table_list = []
 var card_list = []
 var order_queue = []
+var client_list = []
 var money = 1000
 onready var day_counter = 1
 
@@ -61,9 +62,19 @@ func _process(delta):
 			estado_atual = TimeState.PAUSED
 
 func create_tables():
-	table_list.append(Table.new(Vector2(500,285)))
-	table_list.append(Table.new(Vector2(335,285)))
-	table_list.append(Table.new(Vector2(145,285)))
+	var table
+	var table_path = "res://Scenes/Entity/Table.tscn"
+	for i in range(3):
+		table = load(table_path).instance()
+		table_list.append(table)
+		add_child(table)
+		
+	table_list[0].position = Vector2(488,288)
+	table_list[0].dir_esq = 1
+	table_list[1].position = Vector2(343,288)
+	table_list[1].dir_esq = 2
+	table_list[2].position = Vector2(153,288)
+	table_list[2].dir_esq = 2
 
 func create_cards():
 	card_list.append(Card.new(1, 1, 1, "Count Fang"))
@@ -84,15 +95,21 @@ func spawn_client():
 	client_counter += 1
 	var client_path = "res://Scenes/Entity/Client.tscn"
 	var client = load(client_path).instance()
+	client_list.append(client)
 	client.global_position = self.position + Vector2(415,180)
 	print("cliente " + str(client_counter) + " spawnou em" + str(client.global_position))
 	add_child(client)
+
+func clear():
+	for client in client_list:
+		client.queue_free()
 
 func transition_screen_load():
 	transition = transition_scene.instance()
 	add_child(transition)
 
 func day_manager():
+	clear()
 	if day_counter == 1:
 		if posso_prosseguir == 0:
 			dialogo_atual = dialogue_list.dialogo_dia_1
@@ -100,8 +117,8 @@ func day_manager():
 			posso_prosseguir += 1
 		else:
 			if posso_prosseguir == 1:
+				estado_atual = TimeState.PAUSED
 				dialogo_atual = systemDia_list.sistema_dia_1
 				dialogo_ou_sistema = 2
 				dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
-				estado_atual = TimeState.RUNNING
 				posso_prosseguir += 1

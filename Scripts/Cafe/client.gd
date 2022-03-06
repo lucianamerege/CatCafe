@@ -11,12 +11,14 @@ var time
 var to_walk
 var can_move = false
 var turn = false
+var seated = false
 
+signal cliente_senta
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("cliente primeiro")
-	table = search_for_table()
 	
+	table = search_for_table()
+	self.connect("cliente_senta",table,"cliente_sentado")
 	time = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,7 +28,7 @@ func _process(delta):
 		can_move = true
 		wait_time = 0
 
-	if(can_move):
+	if(can_move and !seated):
 		move()
 	
 func search_for_table():
@@ -47,6 +49,7 @@ func move():
 	
 func get_direction():
 	to_walk = self.position - (table.position + table_offset)
+
 	if(to_walk.y != 0):
 		self.set_animation("ClienteDesce")
 		return Vector2(0, to_walk.y/to_walk.y)
@@ -67,6 +70,9 @@ func get_direction():
 		return Vector2(0,0)
 
 func sit():
-	can_move = false
+	seated = true
 	cafe.order_queue.append(Order.new())
+	emit_signal("cliente_senta")
+	self.hide()
+	self.set_process(false)
 	pass
