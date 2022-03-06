@@ -10,24 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "Card",
-"language": "GDScript",
-"path": "res://Scripts/Cafe/card_funcionario.gd"
-}, {
-"base": "Node",
 "class": "Order",
 "language": "GDScript",
 "path": "res://Scripts/Cafe/order.gd"
-}, {
-"base": "Node",
-"class": "Table",
-"language": "GDScript",
-"path": "res://Scripts/Cafe/table.gd"
 } ]
 _global_script_class_icons={
-"Card": "",
-"Order": "",
-"Table": ""
+"Order": ""
 }
 
 [application]
