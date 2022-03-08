@@ -105,4 +105,6 @@ func load_dialogue(var nome_dicionario, var dialogo_ou_sistema):
 		if dialogo_ou_sistema == 2:
 			hide_textbox_system()
 		cafe.estado_atual = cafe.TimeState.RUNNING
+		cafe.gato1.show()
+		cafe.gato2.show()
 		emit_signal("fim_dialogo")

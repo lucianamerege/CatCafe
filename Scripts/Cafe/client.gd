@@ -74,4 +74,7 @@ func sit():
 	emit_signal("cliente_senta", self)
 	self.hide()
 	self.set_process(false)
+	if cafe.primeiro_cliente == false:
+		cafe.primeiro_cliente = true
+		cafe.day_manager()
 	pass

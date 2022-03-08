@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Assets/Chaos.png" type="Texture" id=1]
 [ext_resource path="res://Assets/cadeiras-mesas.png" type="Texture" id=2]
@@ -15,7 +15,8 @@
 [ext_resource path="res://Assets/ImageArts/menu-fundo-2.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/Roteiro/Sistema.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Cafe/card_funcionario.gd" type="Script" id=15]
-[ext_resource path="res://Assets/SpriteSheets/trabalho-4.png.png" type="Texture" id=16]
+[ext_resource path="res://Assets/card-gato.png" type="Texture" id=16]
+[ext_resource path="res://Assets/card-gato2.png" type="Texture" id=17]
 [ext_resource path="res://Scripts/Cafe/card_funcionario2.gd" type="Script" id=18]
 
 [sub_resource type="TileSet" id=1]
@@ -229,7 +230,16 @@ border_width_bottom = 4
 border_color = Color( 1, 1, 0, 1 )
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 42, 54.5 )
+extents = Vector2( 58, 61 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_bottom = 4
+border_color = Color( 0.466667, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 8
+font_data = ExtResource( 10 )
 
 [node name="Cafe" type="Node2D"]
 script = ExtResource( 9 )
@@ -444,18 +454,19 @@ input_pickable = true
 script = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cat1"]
-position = Vector2( -4, -1 )
+position = Vector2( 4, 4 )
 shape = SubResource( 13 )
 
 [node name="TextureRect" type="TextureRect" parent="Cat1"]
-margin_left = -65.0
-margin_top = -56.0
-margin_right = 65.0
-margin_bottom = 66.0
+margin_left = -59.0
+margin_top = -50.0
+margin_right = 71.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 130, 0 )
 mouse_filter = 2
-texture = ExtResource( 16 )
-stretch_mode = 1
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -467,18 +478,42 @@ input_pickable = true
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cat2"]
-position = Vector2( -4, -1 )
+position = Vector2( -10, 3 )
 shape = SubResource( 13 )
 
 [node name="TextureRect" type="TextureRect" parent="Cat2"]
-margin_left = -65.0
-margin_top = -56.0
-margin_right = 65.0
-margin_bottom = 66.0
+margin_left = -77.0
+margin_top = -50.0
+margin_right = 54.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 130, 0 )
 mouse_filter = 2
 texture = ExtResource( 16 )
-stretch_mode = 1
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ocupados" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Ocupados"]
+margin_left = 736.0
+margin_top = 441.0
+margin_right = 948.0
+margin_bottom = 483.0
+custom_styles/panel = SubResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Ocupados"]
+margin_left = 759.0
+margin_top = 452.0
+margin_right = 1095.0
+margin_bottom = 488.0
+custom_fonts/font = SubResource( 15 )
+text = "Funcionários Ocupados:"
 __meta__ = {
 "_edit_use_anchors_": false
 }

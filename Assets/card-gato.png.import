@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mesas-cadeiras-ocupadas-ESQ.png-10b7b9a799195a9351ff5d6427949a9d.stex"
+path="res://.import/card-gato.png-2d7ccf60a40f68b9ed23d30796f1a47e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/mesas-cadeiras-ocupadas-ESQ.png"
-dest_files=[ "res://.import/mesas-cadeiras-ocupadas-ESQ.png-10b7b9a799195a9351ff5d6427949a9d.stex" ]
+source_file="res://Assets/card-gato.png"
+dest_files=[ "res://.import/card-gato.png-2d7ccf60a40f68b9ed23d30796f1a47e.stex" ]
 
 [params]
 

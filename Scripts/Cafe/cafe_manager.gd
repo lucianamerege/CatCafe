@@ -26,6 +26,8 @@ signal create_cards
 onready var dialogues = $Textboxes
 onready var dialogue_list = $Dialogo
 onready var systemDia_list = $Sistema
+var ocupados
+var ocupadosLabel
 
 enum TimeState {
 	RUNNING,
@@ -37,6 +39,7 @@ onready var dialogo_ou_sistema = 1 #1 vai ser dialogo, 2 vai ser sistema
 
 var transition_scene
 var posso_prosseguir = 0
+onready var primeiro_cliente = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,25 +51,32 @@ func _ready():
 #	$Area2D/CollisionShape2D_Cafe/Panel.hide()
 	gato1 = get_node("Cat1")
 	gato2 = get_node("Cat2")
+	ocupados = get_node("Ocupados/Panel")
+	ocupadosLabel = get_node("Ocupados/Label")
+	gato1.hide()
+	gato2.hide()
+	ocupados.hide()
+	ocupadosLabel.hide()
 	create_tables()
 	create_cards()
 	transition_screen_load()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if estado_atual == TimeState.RUNNING:
-		time += delta
-		if time > CLIENT_MIN_INTERVAL:
-			aux_time += delta
-			if aux_time > 1 and client_counter < client_limit:
-				try_spawn()
-				aux_time -= 1.0
+	#if estado_atual == TimeState.RUNNING:
+		#time += delta
+		#if time > CLIENT_MIN_INTERVAL:
+		#	aux_time += delta
+		#	if aux_time > 1 and client_counter < client_limit:
+		#		try_spawn()
+		#		aux_time -= 1.0
 			
-		if time >= day_lenght:
-			time = 0.0
-			day_counter += 1
-			transition_screen_load()
-			estado_atual = TimeState.PAUSED
+		#if time >= day_lenght:
+		#	time = 0.0
+			#day_counter += 1
+		#	transition_screen_load()
+		#	estado_atual = TimeState.PAUSED
+	pass
 
 func create_tables():
 	var table
@@ -113,16 +123,58 @@ func transition_screen_load():
 	add_child(transition)
 
 func day_manager():
-	clear()
 	if day_counter == 1:
 		if posso_prosseguir == 0:
 			dialogo_atual = dialogue_list.dialogo_dia_1
 			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
 			posso_prosseguir += 1
-		else:
-			if posso_prosseguir == 1:
-				estado_atual = TimeState.PAUSED
-				dialogo_atual = systemDia_list.sistema_dia_1
-				dialogo_ou_sistema = 2
-				dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
-				posso_prosseguir += 1
+			
+		elif posso_prosseguir == 1:
+			estado_atual = TimeState.PAUSED
+			gato1.hide()
+			gato2.hide()
+			dialogo_atual = systemDia_list.sistema_dia_1
+			dialogo_ou_sistema = 2
+			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+			posso_prosseguir += 1
+			
+		elif posso_prosseguir == 2:
+			gato1.hide()
+			gato2.hide()
+			posso_prosseguir += 1
+			spawn_client()
+			
+		elif posso_prosseguir == 3:
+			estado_atual = TimeState.PAUSED
+			gato1.hide()
+			gato2.hide()
+			yield(get_tree().create_timer(2.0), "timeout")
+			dialogo_atual = systemDia_list.sistema_dia_1_cliente
+			dialogo_ou_sistema = 2
+			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+			posso_prosseguir += 1
+		
+		elif posso_prosseguir == 4:
+			ocupados.show()
+			ocupadosLabel.show()
+			posso_prosseguir += 1
+			pass
+			
+		elif posso_prosseguir == 5:
+			estado_atual = TimeState.PAUSED
+			gato1.hide()
+			gato2.hide()
+			dialogo_atual = systemDia_list.dialogo_dia_1_capuccino
+			dialogo_ou_sistema = 1
+			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+			posso_prosseguir += 1
+			
+		elif posso_prosseguir == 6:
+			estado_atual = TimeState.PAUSED
+			gato1.hide()
+			gato2.hide()
+			dialogo_atual = systemDia_list.sistema_dia_1_capuccino
+			dialogo_ou_sistema = 2
+			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+			posso_prosseguir += 1
+				

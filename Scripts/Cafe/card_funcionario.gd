@@ -35,8 +35,7 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 		elif event.button_index == BUTTON_LEFT and !event.pressed:
 			if(entered_table):
 				emit_signal("collide")
-#			print("DROP", get_overlapping_areas())
-			position = start_position
+				position = Vector2(800,500)
 			emit_signal("dragsignal")
 	elif event is InputEventScreenTouch:
 		if event.pressed and event.get_index() == 0:
