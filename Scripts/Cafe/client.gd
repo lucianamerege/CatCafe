@@ -13,7 +13,7 @@ var can_move = false
 var turn = false
 var seated = false
 
-signal cliente_senta
+signal cliente_senta(cliente)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	table = search_for_table()
@@ -71,7 +71,7 @@ func get_direction():
 func sit():
 	seated = true
 	cafe.order_queue.append(Order.new())
-	emit_signal("cliente_senta")
+	emit_signal("cliente_senta", self)
 	self.hide()
 	self.set_process(false)
 	pass

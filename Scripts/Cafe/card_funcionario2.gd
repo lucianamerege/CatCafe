@@ -5,18 +5,19 @@ var tecnica
 var stamina
 var nome
 var dragging = false
+var entered_table = false
 var start_position
 onready var cafe = get_parent()
-var overTable = 0
 
-signal dragsignal;
+signal dragsignal
+signal collide
 
 func _ready():
 	connect("dragsignal",self,"_set_drag_pc")
-	nome = "Catarina Preciosa"
-	carisma = 64
-	tecnica = 11
-	stamina = 160
+	nome = "Count Fang"
+	carisma = 23
+	tecnica = 10
+	stamina = 200
 	start_position = position
 	
 func _process(delta):
@@ -32,6 +33,8 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("dragsignal") 
 		elif event.button_index == BUTTON_LEFT and !event.pressed:
+			if(entered_table):
+				emit_signal("collide")
 #			print("DROP", get_overlapping_areas())
 			position = start_position
 			emit_signal("dragsignal")
@@ -40,22 +43,29 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 			self.position = get_node("/root").event.get_position()
 			
 func executeTask():
-	var tasks = cafe.order_queue
 	if(cafe.order_queue.length > 0 && stamina > 40):
 		print('task executed')
 		cafe.order_queue.remove(0)
-		stamina -= 40
+		var task = cafe.order_queue[0]
 	
-func _on_Table1_body_entered(body):
-	print('body entered')
-
-func _on_Table1_body_exited(body):
-	print('body exited')
-
-
+func _on_create_cards():
+	print("CREATIND CARTS")
+	for mesa in cafe.table_list:
+		print("´PRINT DA MESA",mesa)
+		connect("collide", mesa, "_on_collide")
+	
+func _on_table_body_entered(body):
+	entered_table = true
+	
+func _on_table_body_exited(body):
+	entered_table = false
+	
+func cookingTask(index):
+	cafe.order_queue[index].task += 1 #passando a proxima etapa do pedido do cliente
+	
 func _on_Cozinhar_body_entered(body):
-	print(str('Body entered cozinha: ', body.get_name()))
+	pass # Replace with function body.
 
 
 func _on_Cozinhar_body_exited(body):
-	print(str('Body exited cozinha: ', body.get_name()))
+	pass # Replace with function body.
