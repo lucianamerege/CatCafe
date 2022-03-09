@@ -33,6 +33,8 @@ enum TimeState {
 	RUNNING,
 	PAUSED
 }
+
+var funcionario
 onready var estado_atual = TimeState.PAUSED
 var dialogo_atual
 onready var dialogo_ou_sistema = 1 #1 vai ser dialogo, 2 vai ser sistema
@@ -40,25 +42,33 @@ onready var dialogo_ou_sistema = 1 #1 vai ser dialogo, 2 vai ser sistema
 var transition_scene
 var posso_prosseguir = 0
 onready var primeiro_cliente = false
+onready var primeiro_pedido = false
+onready var primeiro_card = false
+
+var pedidos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	transition_scene = load("res://Scenes/Entity/TransitionDay.tscn")
 	dialogues.hide_textbox()
-	dialogues.hide_textbox_system()
-#	$CanvasLayer/Menu_Cards.hide()
-#	$Area2D_Kitchen/CollisionShape2D_Kitchen/Panel.hide()
-#	$Area2D/CollisionShape2D_Cafe/Panel.hide()
+	dialogues.hide_textbox_system()	
+	
 	gato1 = get_node("Cat1")
 	gato2 = get_node("Cat2")
 	ocupados = get_node("Ocupados/Panel")
 	ocupadosLabel = get_node("Ocupados/Label")
+	pedidos = get_node("Pedidos/Panel")
 	gato1.hide()
 	gato2.hide()
 	ocupados.hide()
 	ocupadosLabel.hide()
+	pedidos.hide()
+	funcionario = load("res://Scenes/Entity/Func.tscn").instance()
+	funcionario.global_position = self.position + Vector2(750,380)
+	add_child(funcionario)
 	create_tables()
 	create_cards()
+	
 	transition_screen_load()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -122,6 +132,11 @@ func transition_screen_load():
 	transition = transition_scene.instance()
 	add_child(transition)
 
+func make_order():
+	funcionario.get_order()
+	
+func cozinhando()
+
 func day_manager():
 	if day_counter == 1:
 		if posso_prosseguir == 0:
@@ -139,6 +154,7 @@ func day_manager():
 			posso_prosseguir += 1
 			
 		elif posso_prosseguir == 2:
+			funcionario.show()
 			gato1.hide()
 			gato2.hide()
 			posso_prosseguir += 1
@@ -154,7 +170,7 @@ func day_manager():
 			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
 			posso_prosseguir += 1
 		
-		elif posso_prosseguir == 4:
+		elif posso_prosseguir == 4: #aqui ele vai esperar o cards ser arrastado, quando for arrastado e colidir tem que dar trigger na animacao do gato que eventualmente vai chamar o day_manager dnv
 			ocupados.show()
 			ocupadosLabel.show()
 			posso_prosseguir += 1
@@ -162,14 +178,34 @@ func day_manager():
 			
 		elif posso_prosseguir == 5:
 			estado_atual = TimeState.PAUSED
+			yield(get_tree().create_timer(1.0), "timeout")
 			gato1.hide()
 			gato2.hide()
-			dialogo_atual = systemDia_list.dialogo_dia_1_capuccino
+			ocupados.hide()
+			ocupadosLabel.hide()
+			dialogo_atual = dialogue_list.dialogo_dia_1_capuccino
 			dialogo_ou_sistema = 1
 			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
 			posso_prosseguir += 1
 			
 		elif posso_prosseguir == 6:
+			ocupados.show()
+			ocupadosLabel.show()
+			make_order()
+			posso_prosseguir += 1
+		
+		elif posso_prosseguir == 7: #aqui a kenzie pegou o pedido e ele vai ter que ser atendido
+			estado_atual = TimeState.PAUSED
+			ocupados.hide()
+			ocupadosLabel.hide()
+			gato1.hide()
+			gato2.hide()
+			dialogo_atual = dialogue_list.dialogo_dia_1_cap_2
+			dialogo_ou_sistema = 1
+			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+			posso_prosseguir += 1
+		
+		elif posso_prosseguir == 8:
 			estado_atual = TimeState.PAUSED
 			gato1.hide()
 			gato2.hide()
@@ -177,4 +213,17 @@ func day_manager():
 			dialogo_ou_sistema = 2
 			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
 			posso_prosseguir += 1
-				
+		
+		elif posso_prosseguir == 9:
+			ocupados.show()
+			ocupadosLabel.show()
+			pedidos.show()
+			pedidos.get_node("ped1").show()
+			posso_prosseguir += 1
+		
+		elif posso_prosseguir == 9:
+			ocupados.show()
+			ocupadosLabel.show()
+			pedidos.show()
+			pedidos.get_node("ped1").show()
+			posso_prosseguir += 1

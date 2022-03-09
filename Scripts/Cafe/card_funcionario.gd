@@ -36,11 +36,20 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 			if(entered_table):
 				emit_signal("collide")
 				position = Vector2(800,500)
+				if cafe.primeiro_card == false:
+					cafe.primeiro_card = true
+					cafe.day_manager()
+				else:
+					cafe.make_order()
 			emit_signal("dragsignal")
 	elif event is InputEventScreenTouch:
 		if event.pressed and event.get_index() == 0:
 			self.position = get_node("/root").event.get_position()
-			
+
+func go_back_position():
+	yield(get_tree().create_timer(1.0), "timeout")
+	position = Vector2(102,525)
+
 func executeTask():
 	if(cafe.order_queue.length > 0 && stamina > 40):
 		print('task executed')

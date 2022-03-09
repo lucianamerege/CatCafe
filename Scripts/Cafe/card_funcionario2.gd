@@ -6,11 +6,13 @@ var stamina
 var nome
 var dragging = false
 var entered_table = false
+var entered_kitchen = false
 var start_position
 onready var cafe = get_parent()
 
 signal dragsignal
 signal collide
+signal collide_kitchen
 
 func _ready():
 	connect("dragsignal",self,"_set_drag_pc")
@@ -35,8 +37,9 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 		elif event.button_index == BUTTON_LEFT and !event.pressed:
 			if(entered_table):
 				emit_signal("collide")
-#			print("DROP", get_overlapping_areas())
-			position = start_position
+			elif(entered_kitchen):
+				emit_signal("kitchen_collide")
+			position = Vector2(860,500)
 			emit_signal("dragsignal")
 	elif event is InputEventScreenTouch:
 		if event.pressed and event.get_index() == 0:
@@ -53,6 +56,7 @@ func _on_create_cards():
 	for mesa in cafe.table_list:
 		print("´PRINT DA MESA",mesa)
 		connect("collide", mesa, "_on_collide")
+		connect("collide_kitchen", cafe, "preparar_pedidos")
 	
 func _on_table_body_entered(body):
 	entered_table = true
@@ -64,8 +68,8 @@ func cookingTask(index):
 	cafe.order_queue[index].task += 1 #passando a proxima etapa do pedido do cliente
 	
 func _on_Cozinhar_body_entered(body):
-	pass # Replace with function body.
+	entered_kitchen = true
+	body.cozinhar()
 
-
-func _on_Cozinhar_body_exited(body):
-	pass # Replace with function body.
+func cozinhar():
+	cafe.cozinhando()

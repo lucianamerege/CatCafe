@@ -20,7 +20,7 @@ var sistema_dia_1_cliente = [
 		"Texto":"Está na hora de você decidir quem irá atender o primeiro cliente do Cat Cafe. Não o assuste! Você precisa que ele volte amanhã também! Na parte de baixo da tela você pode visualizar todos os seus funcionários do café e se eles estão disponíveis."
 	},
 	{
-		"Texto":"Dê um clique duplo em cima de um card para visualizar as informações de um gatinho ou arraste o card para a área do café para atribuir a um gatinho a sua primeira tarefa."
+		"Texto":"Arraste um card de funcionário para a mesa ocupada para atribuir a um gatinho a sua primeira tarefa."
 	}
 ]
 

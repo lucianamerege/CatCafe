@@ -7,6 +7,5 @@
 scale = Vector2( 0.8, 0.8 )
 frames = ExtResource( 1 )
 animation = "ClienteDesce"
-frame = 1
 playing = true
 script = ExtResource( 2 )
