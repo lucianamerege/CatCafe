@@ -5,7 +5,6 @@ var tecnica
 var stamina
 var nome
 var dragging = false
-var entered_table = false
 var entered_kitchen = false
 var start_position
 onready var cafe = get_parent()
@@ -35,45 +34,15 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("dragsignal") 
 		elif event.button_index == BUTTON_LEFT and !event.pressed:
-			if(entered_table):
-				emit_signal("collide")
-			elif(entered_kitchen):
-				emit_signal("kitchen_collide")
-			position = Vector2(860,500)
+			position = Vector2(880,500)
 			emit_signal("dragsignal")
 	elif event is InputEventScreenTouch:
 		if event.pressed and event.get_index() == 0:
 			self.position = get_node("/root").event.get_position()
 
 func go_back_position():
-	yield(get_tree().create_timer(1.0), "timeout")
 	position = Vector2(236,525)
 
-func executeTask():
-	if(cafe.order_queue.length > 0 && stamina > 40):
-		print('task executed')
-		cafe.order_queue.remove(0)
-		var task = cafe.order_queue[0]
-	
-func _on_create_cards():
-	print("CREATIND CARTS")
-	for mesa in cafe.table_list:
-		print("´PRINT DA MESA",mesa)
-		connect("collide", mesa, "_on_collide")
-		connect("collide_kitchen", cafe, "preparar_pedidos")
-	
-func _on_table_body_entered(body):
-	entered_table = true
-	
-func _on_table_body_exited(body):
-	entered_table = false
-	
-func cookingTask(index):
-	cafe.order_queue[index].task += 1 #passando a proxima etapa do pedido do cliente
-	
 func _on_Cozinhar_body_entered(body):
 	entered_kitchen = true
-	self.cozinhar()
-
-func cozinhar():
 	cafe.cozinhando()

@@ -8,7 +8,7 @@ var dragging = false
 var entered_table = false
 var start_position
 onready var cafe = get_parent()
-
+onready var final = false
 signal dragsignal
 signal collide
 
@@ -36,6 +36,8 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 			if(entered_table):
 				emit_signal("collide")
 				position = Vector2(800,500)
+				if final == true:
+					cafe.posso_prosseguir += 1
 				cafe.day_manager()
 			emit_signal("dragsignal")
 	elif event is InputEventScreenTouch:
@@ -45,6 +47,8 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 func go_back_position():
 	yield(get_tree().create_timer(1.0), "timeout")
 	position = Vector2(102,525)
+	entered_table = false
+	final = true
 
 func executeTask():
 	if(cafe.order_queue.length > 0 && stamina > 40):
@@ -61,8 +65,6 @@ func _on_create_cards():
 func _on_table_body_entered(body):
 	entered_table = true
 	
-func _on_table_body_exited(body):
-	entered_table = false
 	
 func cookingTask(index):
 	cafe.order_queue[index].task += 1 #passando a proxima etapa do pedido do cliente

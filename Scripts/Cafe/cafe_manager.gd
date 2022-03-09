@@ -130,14 +130,14 @@ func make_order():
 	funcionario.get_order()
 	
 func cozinhando():
-	funcionario2.global_position = self.position + Vector2(780,180)
+	funcionario2.global_position = self.position + Vector2(880,180)
 	funcionario2.animacao.set_animation("Costas")
-	yield(get_tree().create_timer(4.0), "timeout")
+	yield(get_tree().create_timer(3.0), "timeout")
 	funcionario2.global_position = self.position + Vector2(800,380)
 	funcionario2.animacao.set_animation("Parado")
 	pedidos.get_node("ped1").color = Color(0, 1, 0, 1) #cor verde
 	gato2.go_back_position()
-	self.day_manager()
+	day_manager()
 	
 
 func finish_table():
@@ -232,6 +232,7 @@ func day_manager():
 			posso_prosseguir += 1
 		
 		elif posso_prosseguir == 10:
+			estado_atual = TimeState.PAUSED
 			ocupados.hide()
 			ocupadosLabel.hide()
 			moedinhas.hide()
@@ -246,17 +247,20 @@ func day_manager():
 			posso_prosseguir += 1
 			
 		elif posso_prosseguir == 11:
+			print("AAAA")
+			print (posso_prosseguir)
 			ocupados.show()
 			ocupadosLabel.show()
 			pedidos.show()
 			funcionario.show()
 			funcionario2.show()
-			posso_prosseguir += 1
 			
 		elif posso_prosseguir == 12:
+			print("BBBB")
 			make_order()
 			posso_prosseguir += 1
 		
 		elif posso_prosseguir == 13:
 			var lixo = finish_table()
 			moedinhas.show()
+			pedidos.get_node("ped1").hide()
