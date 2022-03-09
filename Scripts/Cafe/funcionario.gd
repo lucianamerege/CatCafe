@@ -16,6 +16,8 @@ onready var humano = false
 var gato1
 signal order_taken
 var initial_position
+onready var soqueroqueissoacabe = false
+onready var final = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +44,10 @@ func search_for_table():
 			return ctable
 			
 func get_order():
-	table = search_for_table()
+	self.set_process(true)
+	if soqueroqueissoacabe == false:
+		table = search_for_table()
+		soqueroqueissoacabe = true
 	can_move = true
 
 func move():
@@ -74,14 +79,13 @@ func get_direction():
 		animacao.set_animation("Cima-Hum")
 		return Vector2(0, -to_walk.y/to_walk.y)
 	
-	if cafe.primeiro_pedido == false:
-		cafe.primeiro_pedido = true
-		cafe.day_manager()
+	cafe.day_manager()
 	emit_signal("order_taken")
 	animacao.set_animation("Parado")
 	self.position = initial_position
 	can_move = false
 	self.set_process(false)
+	table.waiting = true
 	return Vector2(0, 0)
 	
 func cozinhando():

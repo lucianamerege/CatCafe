@@ -32,3 +32,21 @@ var sistema_dia_1_capuccino = [
 		"Texto":"Agora que um pedido foi feito, você precisa arrastar alguém para a cozinha para prepará-lo. Não demore muito! Clientes felizes dão gorjetas maiores."
 	}
 ]
+
+var sistema_dia_1_ult_cap = [
+	{
+		"Texto": "Opa, seu pedido está pronto! Você pode ver isso agora que ele ficou verde na lista de pedidos."
+	},
+	{
+		"Texto": "Arraste algum funcionário para a mesa para completar a venda!"
+	}
+]
+
+var sistema_ultimo = [
+	{
+		"Texto":"Parabéns, você atendeu o seu primeiro cliente!"
+	},
+	{
+		"Texto":"Continue assim e antes que você perceba seu café vai estar bombando."
+	},
+]

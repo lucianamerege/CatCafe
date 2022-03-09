@@ -36,11 +36,7 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 			if(entered_table):
 				emit_signal("collide")
 				position = Vector2(800,500)
-				if cafe.primeiro_card == false:
-					cafe.primeiro_card = true
-					cafe.day_manager()
-				else:
-					cafe.make_order()
+				cafe.day_manager()
 			emit_signal("dragsignal")
 	elif event is InputEventScreenTouch:
 		if event.pressed and event.get_index() == 0:

@@ -13,7 +13,7 @@ var table_list = []
 var card_list = []
 var order_queue = []
 var client_list = []
-var money = 1000
+onready var money = 5
 var gato1
 var gato2
 onready var day_counter = 1
@@ -35,6 +35,7 @@ enum TimeState {
 }
 
 var funcionario
+var funcionario2
 onready var estado_atual = TimeState.PAUSED
 var dialogo_atual
 onready var dialogo_ou_sistema = 1 #1 vai ser dialogo, 2 vai ser sistema
@@ -44,8 +45,11 @@ var posso_prosseguir = 0
 onready var primeiro_cliente = false
 onready var primeiro_pedido = false
 onready var primeiro_card = false
+onready var primeiro_termino = false
 
 var pedidos
+var moedinhas
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,35 +62,25 @@ func _ready():
 	ocupados = get_node("Ocupados/Panel")
 	ocupadosLabel = get_node("Ocupados/Label")
 	pedidos = get_node("Pedidos/Panel")
+	moedinhas = get_node("Moedinhas/Panel")
 	gato1.hide()
 	gato2.hide()
 	ocupados.hide()
 	ocupadosLabel.hide()
 	pedidos.hide()
+	moedinhas.hide()
+	
 	funcionario = load("res://Scenes/Entity/Func.tscn").instance()
 	funcionario.global_position = self.position + Vector2(750,380)
 	add_child(funcionario)
+	
+	funcionario2 = load("res://Scenes/Entity/Func2.tscn").instance()
+	funcionario2.global_position = self.position + Vector2(800,380)
+	add_child(funcionario2)
+	
 	create_tables()
 	create_cards()
-	
 	transition_screen_load()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#if estado_atual == TimeState.RUNNING:
-		#time += delta
-		#if time > CLIENT_MIN_INTERVAL:
-		#	aux_time += delta
-		#	if aux_time > 1 and client_counter < client_limit:
-		#		try_spawn()
-		#		aux_time -= 1.0
-			
-		#if time >= day_lenght:
-		#	time = 0.0
-			#day_counter += 1
-		#	transition_screen_load()
-		#	estado_atual = TimeState.PAUSED
-	pass
 
 func create_tables():
 	var table
@@ -135,7 +129,22 @@ func transition_screen_load():
 func make_order():
 	funcionario.get_order()
 	
-func cozinhando()
+func cozinhando():
+	funcionario2.global_position = self.position + Vector2(780,180)
+	funcionario2.animacao.set_animation("Costas")
+	yield(get_tree().create_timer(4.0), "timeout")
+	funcionario2.global_position = self.position + Vector2(800,380)
+	funcionario2.animacao.set_animation("Parado")
+	pedidos.get_node("ped1").color = Color(0, 1, 0, 1) #cor verde
+	gato2.go_back_position()
+	self.day_manager()
+	
+
+func finish_table():
+	for ctable in table_list:
+		if ctable.waiting:
+			ctable.finishing()
+			return ctable
 
 func day_manager():
 	if day_counter == 1:
@@ -155,6 +164,7 @@ func day_manager():
 			
 		elif posso_prosseguir == 2:
 			funcionario.show()
+			funcionario2.show()
 			gato1.hide()
 			gato2.hide()
 			posso_prosseguir += 1
@@ -164,7 +174,7 @@ func day_manager():
 			estado_atual = TimeState.PAUSED
 			gato1.hide()
 			gato2.hide()
-			yield(get_tree().create_timer(2.0), "timeout")
+			yield(get_tree().create_timer(1.0), "timeout")
 			dialogo_atual = systemDia_list.sistema_dia_1_cliente
 			dialogo_ou_sistema = 2
 			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
@@ -221,9 +231,32 @@ func day_manager():
 			pedidos.get_node("ped1").show()
 			posso_prosseguir += 1
 		
-		elif posso_prosseguir == 9:
+		elif posso_prosseguir == 10:
+			ocupados.hide()
+			ocupadosLabel.hide()
+			moedinhas.hide()
+			pedidos.hide()
+			gato1.hide()
+			gato2.hide()
+			funcionario.hide()
+			funcionario2.hide()
+			dialogo_atual = systemDia_list.sistema_dia_1_ult_cap
+			dialogo_ou_sistema = 2
+			dialogues.load_dialogue(dialogo_atual, dialogo_ou_sistema)
+			posso_prosseguir += 1
+			
+		elif posso_prosseguir == 11:
 			ocupados.show()
 			ocupadosLabel.show()
 			pedidos.show()
-			pedidos.get_node("ped1").show()
+			funcionario.show()
+			funcionario2.show()
 			posso_prosseguir += 1
+			
+		elif posso_prosseguir == 12:
+			make_order()
+			posso_prosseguir += 1
+		
+		elif posso_prosseguir == 13:
+			var lixo = finish_table()
+			moedinhas.show()

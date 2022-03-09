@@ -44,7 +44,11 @@ func _on_KinematicBody2D_input_event(viewport, event, shape_idx):
 	elif event is InputEventScreenTouch:
 		if event.pressed and event.get_index() == 0:
 			self.position = get_node("/root").event.get_position()
-			
+
+func go_back_position():
+	yield(get_tree().create_timer(1.0), "timeout")
+	position = Vector2(236,525)
+
 func executeTask():
 	if(cafe.order_queue.length > 0 && stamina > 40):
 		print('task executed')
@@ -69,7 +73,7 @@ func cookingTask(index):
 	
 func _on_Cozinhar_body_entered(body):
 	entered_kitchen = true
-	body.cozinhar()
+	self.cozinhar()
 
 func cozinhar():
 	cafe.cozinhando()

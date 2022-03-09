@@ -1,10 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Cafe/Func2.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Cafe/corpo_funcionario.gd" type="Script" id=2]
+[ext_resource path="res://Assets/SpriteSheets/gato_sobe_desce(1).png" type="Texture" id=3]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [  ]
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "Costas",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Parado",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 26.5, 48 )
@@ -13,13 +35,11 @@ extents = Vector2( 26.5, 48 )
 script = ExtResource( 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 z_index = 1
-frames = SubResource( 1 )
+frames = SubResource( 5 )
 animation = "Parado"
-frame = 1
 speed_scale = 0.35
 playing = true
 
